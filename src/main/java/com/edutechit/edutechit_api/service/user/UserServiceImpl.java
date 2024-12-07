@@ -8,16 +8,14 @@ import com.edutechit.edutechit_api.entity.User;
 import com.edutechit.edutechit_api.repository.FollowRepository;
 import com.edutechit.edutechit_api.repository.UserRepository;
 import com.edutechit.edutechit_api.util.DropboxUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -99,6 +97,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByFullnameContainingIgnoreCase(fullname);
     }
 
+    //đăng ký nhận email khi có bài viết mới được duyệt
     @Override
     public void registerTracking(String email, String token) {
         String tokenEmail = jwtTokenProvider.getEmailFromToken(token.replace("Bearer ", ""));

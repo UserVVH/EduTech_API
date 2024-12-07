@@ -21,6 +21,8 @@ public class SubscribeController {
     @Autowired
     private EmailService emailService;
 
+
+    //đăng ký nhận mail khi có bài viết mới được duyệt
     @PostMapping("/subscribe")
     public ResponseEntity<String> subscribe(@RequestParam String email, @RequestHeader("Authorization") String token) {
         try {
