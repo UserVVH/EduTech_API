@@ -25,7 +25,6 @@ import jakarta.validation.Validator;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.io.File;
 import java.io.InputStream;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
