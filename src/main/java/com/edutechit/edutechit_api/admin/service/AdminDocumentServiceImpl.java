@@ -382,6 +382,7 @@ public class AdminDocumentServiceImpl implements AdminDocumentService {
     return documents.stream().map(this::toResponseDTO).collect(Collectors.toList());
   }
 
+  //Sắp xếp tài liệu
   @Override
   public List<DocumentResponseDto> getDocumentsSorted(String sortBy, String order) {
     List<Document> documents = documentRepository.findAllSorted(sortBy, order);
