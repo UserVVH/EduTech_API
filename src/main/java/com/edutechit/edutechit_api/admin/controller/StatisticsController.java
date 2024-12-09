@@ -29,6 +29,8 @@ public class StatisticsController {
         long totalRoleTeachers = userRepository.countTeachers();
         long totalRoleStudents = userRepository.countStudents();
         long totalRoleUsers = userRepository.countRoleUsers();
+
+        //tính tỷ lệ phần trăm của các tài liệu (xác minh, tạo mới, từ chối) dựa trên số lượng tổng.
         double verifiedPercentage = totalDocuments > 0 ? (double) verifiedDocuments / totalDocuments * 100 : 0;
         double createdPercentage = totalDocuments > 0 ? (double) createdDocuments / totalDocuments * 100 : 0;
         double rejectedPercentage = totalDocuments > 0 ? (double) rejectedDocuments / totalDocuments * 100 : 0;

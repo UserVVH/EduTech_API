@@ -13,48 +13,45 @@ import java.util.Optional;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByEmail(@Param("email") String email); // tìm user theo email
-    Optional<User> findByIdentifier(String identifier); // tìm user theo identifier
-    Optional<User> findById(@Param("id") Long id);  // Tìm user theo ID
-    List<User> findByFullnameContainingIgnoreCase(String fullname); // tìm user theo fullname
 
-    @Query("SELECT new com.edutechit.edutechit_api.dto.UserDocumentStatsDTO(u.id, u.fullname, u.email, u.identifier, u.role.name, u.avatar, COUNT(d.id), SUM(d.view)) " +
-            "FROM User u JOIN u.documents d " +
-            "WHERE d.status = 'VERIFIED' " +
-            "GROUP BY u.id, u.fullname, u.email, u.identifier, u.role.name, u.avatar " +
-            "ORDER BY COUNT(d.id) DESC")
-    List<UserDocumentStatsDTO> findUsersOrderByDocumentCountDesc();
+  Optional<User> findByEmail(@Param("email") String email); // tìm user theo email
 
-    @Query("SELECT new com.edutechit.edutechit_api.dto.ListUserDto(u.id, u.fullname, u.email, u.address, u.identifier, u.avatar, u.createdAt, u.updatedAt, u.enabled, u.role.name) " +
-            "FROM User u")
-    List<ListUserDto> findAllUsersAsListUserDto();
+  Optional<User> findByIdentifier(String identifier); // tìm user theo identifier
+
+  Optional<User> findById(@Param("id") Long id);  // Tìm user theo ID
+
+  List<User> findByFullnameContainingIgnoreCase(String fullname); // tìm user theo fullname
+
+  @Query(
+      "SELECT new com.edutechit.edutechit_api.dto.UserDocumentStatsDTO(u.id, u.fullname, u.email, u.identifier, u.role.name, u.avatar, COUNT(d.id), SUM(d.view)) "
+          +
+          "FROM User u JOIN u.documents d " +
+          "WHERE d.status = 'VERIFIED' " +
+          "GROUP BY u.id, u.fullname, u.email, u.identifier, u.role.name, u.avatar " +
+          "ORDER BY COUNT(d.id) DESC")
+  List<UserDocumentStatsDTO> findUsersOrderByDocumentCountDesc();
+
+  @Query(
+      "SELECT new com.edutechit.edutechit_api.dto.ListUserDto(u.id, u.fullname, u.email, u.address, u.identifier, u.avatar, u.createdAt, u.updatedAt, u.enabled, u.role.name) "
+          +
+          "FROM User u")
+  List<ListUserDto> findAllUsersAsListUserDto();
 
 
-    @Query("SELECT COUNT(u) FROM User u")
-    long countTotalUsers();
+  @Query("SELECT COUNT(u) FROM User u")
+  long countTotalUsers();
 
-    @Query("SELECT COUNT(d) FROM Document d")
-    long countTotalDocuments();
 
-    @Query("SELECT COUNT(d) FROM Document d WHERE d.status = 'VERIFIED'")
-    long countVerifiedDocuments();
+  @Query("SELECT COUNT(u) FROM User u WHERE u.role.name = 'ADMIN'")
+  long countAdmins();
 
-    @Query("SELECT COUNT(d) FROM Document d WHERE d.status = 'CREATED'")
-    long countCreatedDocuments();
+  @Query("SELECT COUNT(u) FROM User u WHERE u.role.name = 'TEACHER'")
+  long countTeachers();
 
-    @Query("SELECT COUNT(d) FROM Document d WHERE d.status = 'REJECTED'")
-    long countRejectedDocuments();
+  @Query("SELECT COUNT(u) FROM User u WHERE u.role.name = 'STUDENT'")
+  long countStudents();
 
-    @Query("SELECT COUNT(u) FROM User u WHERE u.role.name = 'ADMIN'")
-    long countAdmins();
-
-    @Query("SELECT COUNT(u) FROM User u WHERE u.role.name = 'TEACHER'")
-    long countTeachers();
-
-    @Query("SELECT COUNT(u) FROM User u WHERE u.role.name = 'STUDENT'")
-    long countStudents();
-
-    @Query("SELECT COUNT(u) FROM User u WHERE u.role.name = 'USER'")
-    long countRoleUsers();
+  @Query("SELECT COUNT(u) FROM User u WHERE u.role.name = 'USER'")
+  long countRoleUsers();
 
 }

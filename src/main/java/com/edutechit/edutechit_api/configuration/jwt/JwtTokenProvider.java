@@ -32,9 +32,9 @@ public class JwtTokenProvider {
 
 
     public String getRoleNameFromToken(String token) {
-        Claims claims = Jwts.parser() // Giải mã token
-                .setSigningKey(JWT_SECRET) // Mã hóa token
-                .parseClaimsJws(token) // Giải mã token
+        Claims claims = Jwts.parser() // Giải mã và kiểm tra token.
+                .setSigningKey(JWT_SECRET) // Secret key đã dùng để tạo token
+                .parseClaimsJws(token) // Giải mã token, Nếu token bị giả mạo hoặc hết hạn, bước này sẽ ném ra ngoại lệ.
                 .getBody(); // Lấy thông tin trong token
         return claims.get("roleName", String.class); // Lấy roleName từ token
     }
