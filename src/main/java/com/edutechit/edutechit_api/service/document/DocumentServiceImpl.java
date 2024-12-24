@@ -163,6 +163,7 @@ public class DocumentServiceImpl implements DocumentService {
   @Override
   @Transactional
   public DocumentDto updateDocument(Long id, DocumentCreateDto documentCreateDTO, String token) {
+    //Đang bị sai, chưa kiểm tra token để xem có đúng người dùng đã tạo tài liệu đó update hay không
     try {
       Document document = documentRepository.findById(id)
           .orElseThrow(() -> new DocumentNotFoundException("Document not found"));
