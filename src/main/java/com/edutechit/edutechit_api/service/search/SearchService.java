@@ -34,6 +34,7 @@ public class SearchService {
         // Search documents by title, username, category name, author, publisher, publishing year
 //        List<Document> documents = documentRepository.findByTitleContainingIgnoreCaseOrUser_FullnameContainingIgnoreCaseOrCategory_NameContainingIgnoreCaseOrAuthorContainingIgnoreCaseOrPublisherContainingIgnoreCaseOrPublishingYearContainingIgnoreCase(
 //                searchText);
+        // Search documents by title, username, category name
         List<Document> documents = documentRepository.searchDocuments(searchText);
         List<DocumentResponseDto> documentDtos = documents.stream().map(this::convertToDocumentDto).collect(Collectors.toList());
         response.setDocumentsByTitle(documentDtos); // Reusing the same field for simplicity

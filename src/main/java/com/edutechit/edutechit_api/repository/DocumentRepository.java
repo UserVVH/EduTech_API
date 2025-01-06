@@ -154,8 +154,15 @@ public interface DocumentRepository extends JpaRepository<Document, Long> {
   @Query("SELECT COUNT(d) FROM Document d WHERE d.status = 'REJECTED'")
   long countRejectedDocuments();
 
+//  @Query("SELECT d FROM Document d " +
+//      "WHERE LOWER(CONCAT(d.title, ' ', d.user.fullname, ' ', d.category.name, ' ', d.author, ' ', d.publisher, ' ', d.publishingYear)) "
+//      +
+//      "LIKE LOWER(CONCAT('%', :searchText, '%')) " +
+//      "AND d.status = 'VERIFIED'")
+//  List<Document> searchDocuments(@Param("searchText") String searchText);
+
   @Query("SELECT d FROM Document d " +
-      "WHERE LOWER(CONCAT(d.title, ' ', d.user.fullname, ' ', d.category.name, ' ', d.author, ' ', d.publisher, ' ', d.publishingYear)) "
+      "WHERE LOWER(CONCAT(d.title, ' ', d.user.fullname, ' ', d.category.name)) "
       +
       "LIKE LOWER(CONCAT('%', :searchText, '%')) " +
       "AND d.status = 'VERIFIED'")
