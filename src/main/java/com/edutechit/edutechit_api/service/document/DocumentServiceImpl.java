@@ -5,24 +5,31 @@ import com.edutechit.edutechit_api.dto.CommentDto;
 import com.edutechit.edutechit_api.dto.DocumentCreateDto;
 import com.edutechit.edutechit_api.dto.DocumentDto;
 import com.edutechit.edutechit_api.dto.DocumentResponseDto;
-import com.edutechit.edutechit_api.entity.*;
+import com.edutechit.edutechit_api.entity.Category;
+import com.edutechit.edutechit_api.entity.Comment;
+import com.edutechit.edutechit_api.entity.Document;
+import com.edutechit.edutechit_api.entity.File;
+import com.edutechit.edutechit_api.entity.User;
 import com.edutechit.edutechit_api.exception.CategoryNotFoundException;
 import com.edutechit.edutechit_api.exception.DocumentNotFoundException;
 import com.edutechit.edutechit_api.exception.UserNotFoundException;
-import com.edutechit.edutechit_api.repository.*;
+import com.edutechit.edutechit_api.repository.CategoryRepository;
+import com.edutechit.edutechit_api.repository.CommentRepository;
+import com.edutechit.edutechit_api.repository.DocumentRepository;
+import com.edutechit.edutechit_api.repository.FileRepository;
+import com.edutechit.edutechit_api.repository.UserRepository;
 import com.edutechit.edutechit_api.util.DropboxUtils;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @Service
@@ -48,6 +55,7 @@ public class DocumentServiceImpl implements DocumentService {
 
   @Autowired
   private DropboxUtils dropboxUtils;
+
 
   @Override
   @Transactional
