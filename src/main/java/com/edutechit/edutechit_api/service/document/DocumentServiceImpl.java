@@ -224,8 +224,10 @@ public class DocumentServiceImpl implements DocumentService {
   @Transactional
   public DocumentDto getDocument(Long id) {
     try {
+
       Document document = documentRepository.findById(id)
           .orElseThrow(() -> new DocumentNotFoundException("Document not found"));
+
       document.setView(document.getView() + 1);
       document = documentRepository.save(document);
 
@@ -246,6 +248,7 @@ public class DocumentServiceImpl implements DocumentService {
       throw new RuntimeException("Failed to get document", e);
     }
   }
+
 
   private CommentDto toCommentDto(Comment comment) {
     CommentDto commentDto = new CommentDto();
@@ -274,8 +277,10 @@ public class DocumentServiceImpl implements DocumentService {
         .orElseThrow(
             () -> new DocumentNotFoundException("Document not found with id: " + documentId));
 
-    // First delete all comments and file related to the document
+    // Xoá các file liên quan
     fileRepository.deleteByDocument(document);
+
+    // Xoá các bình luận liên quan
     commentRepository.deleteByDocumentId(documentId);
 
     // Now delete the document

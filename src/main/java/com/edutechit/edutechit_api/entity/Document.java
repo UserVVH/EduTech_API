@@ -5,6 +5,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -54,10 +55,15 @@ public class Document {
   @JoinColumn(name = "category_id")
   private Category category;
 
-  @OneToOne(mappedBy = "document", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+//  optional = false là một tài liệu phải có 1  file
+//  @OneToOne(mappedBy = "document", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+  @OneToOne(mappedBy = "document", fetch = FetchType.LAZY, optional = false)
+  @ToString.Exclude
   private File file;
 
-  @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+//  @OneToMany(mappedBy = "document", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+  @OneToMany(mappedBy = "document", orphanRemoval = true, fetch = FetchType.LAZY)
+  @ToString.Exclude
   private Set<Comment> comments = new HashSet<>();
 
   @Column(nullable = false)

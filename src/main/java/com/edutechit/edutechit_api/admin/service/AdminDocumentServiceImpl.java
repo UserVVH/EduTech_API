@@ -82,8 +82,13 @@ public class AdminDocumentServiceImpl implements AdminDocumentService {
           .map(Follow::getEmail)
           .toArray(String[]::new);
 
-      emailService.sendEmail(emailAddresses, "Tài Liệu Mới Đã Được Xác Thực",
-          "Một tài liệu mới đã được xác thực, bạn có thể truy cập đến: http://localhost:3000/ để xem ngay.");
+      String documentName = document.getTitle();
+      String documentLink = "http://localhost:3000/documents/" + documentId;
+      // Tiêu đề email
+      String emailSubject = "EduTech VNUA - Tài liệu mới: " + documentName;
+
+      emailService.sendEmail(emailAddresses, emailSubject,
+          documentLink);
     }
   }
 
@@ -99,7 +104,7 @@ public class AdminDocumentServiceImpl implements AdminDocumentService {
       document.setPublishingYear(documentCreateDTO.getPublishingYear());
       document.setCreatedAt(LocalDateTime.now());
       document.setUpdatedAt(LocalDateTime.now());
-      document.setStatus(Document.Status.VERIFIED);
+      document.setStatus(Document.Status.CREATED);
 
       long userId = getUserIdFromToken(token);
       User user = userRepository.findById(userId)
@@ -302,12 +307,15 @@ public class AdminDocumentServiceImpl implements AdminDocumentService {
         .orElseThrow(
             () -> new DocumentNotFoundException("Document not found with id: " + documentId));
 
-    // First delete all comments related to the document
+    // Xoá các file liên quan
     fileRepository.deleteByDocument(document);
+
+    // Xoá các bình luận liên quan
     commentRepository.deleteByDocumentId(documentId);
 
     // Now delete the document
     documentRepository.delete(document);
+
   }
 
   private DocumentResponseDto toResponseDTO(Document document) {

@@ -3,7 +3,6 @@ package com.edutechit.edutechit_api.service.document;
 import com.edutechit.edutechit_api.dto.DocumentCreateDto;
 import com.edutechit.edutechit_api.dto.DocumentDto;
 import com.edutechit.edutechit_api.dto.DocumentResponseDto;
-
 import java.util.List;
 
 public interface DocumentService {
