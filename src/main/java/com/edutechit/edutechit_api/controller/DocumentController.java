@@ -153,11 +153,11 @@ public class DocumentController {
   }
 
   // Lấy top 100 bài viết VERIFIED có số view cao nhất
-  @GetMapping("/top-100-most-viewed")
-  public ResponseEntity<List<DocumentResponseDto>> getTop100MostViewedVerifiedDocuments() {
-    List<DocumentResponseDto> documents = documentService.getTop100MostViewedVerifiedDocuments();
-    return ResponseEntity.ok(documents);
-  }
+//  @GetMapping("/top-100-most-viewed")
+//  public ResponseEntity<List<DocumentResponseDto>> getTop100MostViewedVerifiedDocuments() {
+//    List<DocumentResponseDto> documents = documentService.getTop100MostViewedVerifiedDocuments();
+//    return ResponseEntity.ok(documents);
+//  }
 
   // Lấy top 10 bài viết VERIFIED có số view cao nhất
   @GetMapping("/top-10-most-viewed")

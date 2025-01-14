@@ -265,23 +265,64 @@ public class AuthServiceImpl implements AuthService {
       message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
       message.setSubject("Thông Báo Khôi Phục Mật Khẩu");
 
+//      String htmlContent = "<!DOCTYPE html>" +
+//          "<html>" +
+//          "<head>" +
+//          "<style>" +
+//          "body {font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; padding: 0;}"
+//          +
+//          ".container {max-width: 600px; margin: 30px auto; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);}"
+//          +
+//          ".header {background-color: #007BFF; padding: 15px; text-align: center; color: #ffffff; font-size: 24px; font-weight: bold; border-top-left-radius: 10px; border-top-right-radius: 10px;}"
+//          +
+//          ".content {padding: 20px; line-height: 1.8; color: #555555;}" +
+//          ".content p {margin: 0 0 15px;}" +
+//          ".button {display: inline-block; padding: 12px 25px; color: #ffffff;  border-radius: 5px; text-decoration: none; font-weight: bold; text-align: center;}"
+//          +
+//          ".password {font-weight: bold; font-size: 18px; color: #d32f2f; padding: 5px 10px; background-color: #fbe9e7; display: inline-block; border-radius: 5px; margin-top: 10px;}"
+//          +
+//          ".warning {font-size: 16px; font-weight: bold; color: #e65100; background-color: #fff3e0; padding: 10px; border-radius: 5px; margin-top: 15px;}"
+//          +
+//          ".footer {margin-top: 20px; font-size: 14px; color: #777777; text-align: center; border-top: 1px solid #dddddd; padding-top: 15px;}"
+//          +
+//          "</style>" +
+//          "</head>" +
+//          "<body>" +
+//          "<div class='container'>" +
+//          "<div class='header'>Thông Báo Khôi Phục Mật Khẩu</div>" +
+//          "<div class='content'>" +
+//          "<p>Xin chào,</p>" +
+//          "<p>Mật khẩu của bạn đã được đặt lại thành công. Mật khẩu mới của bạn là:</p>" +
+//          "<p class='password'>" + newPassword + "</p>" +
+//          "<p>Hãy sao chép mật khẩu này và giữ bí mật.</p>" +
+//          "<p class='warning'>Vui lòng thay đổi mật khẩu ngay sau khi đăng nhập thành công!</p>" +
+//          "<a href='http://localhost:3000/login' class='button'>Đăng Nhập Ngay</a>" +
+//          "</div>" +
+//          "<div class='footer'>" +
+//          "<p>Nếu bạn không yêu cầu thay đổi mật khẩu này, vui lòng liên hệ bộ phận hỗ trợ của chúng tôi.</p>"
+//          +
+//          "</div>" +
+//          "</div>" +
+//          "</body>" +
+//          "</html>";
+
       String htmlContent = "<!DOCTYPE html>" +
           "<html>" +
           "<head>" +
           "<style>" +
-          "body {font-family: Arial, sans-serif; background-color: #f9f9f9; margin: 0; padding: 0;}"
+          "body {font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 0; padding: 0;}"
           +
           ".container {max-width: 600px; margin: 30px auto; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);}"
           +
-          ".header {background-color: #007BFF; padding: 15px; text-align: center; color: #ffffff; font-size: 24px; font-weight: bold; border-top-left-radius: 10px; border-top-right-radius: 10px;}"
+          ".header {background-color: #0056b3; padding: 15px; text-align: center; color: #ffffff; font-size: 24px; font-weight: bold; border-top-left-radius: 10px; border-top-right-radius: 10px;}"
           +
-          ".content {padding: 20px; line-height: 1.8; color: #555555;}" +
+          ".content {padding: 20px; line-height: 1.8; color: #333333;}" +
           ".content p {margin: 0 0 15px;}" +
-          ".button {display: inline-block; padding: 12px 25px; color: #ffffff;  border-radius: 5px; text-decoration: none; font-weight: bold; text-align: center;}"
+          ".button {display: inline-block; padding: 12px 25px; color: #ffffff; background-color: #007bff; border-radius: 5px; text-decoration: none; font-weight: bold; text-align: center;}"
           +
-          ".password {font-weight: bold; font-size: 18px; color: #d32f2f; padding: 5px 10px; background-color: #fbe9e7; display: inline-block; border-radius: 5px; margin-top: 10px;}"
+          ".password {font-weight: bold; font-size: 18px; color: #ffffff; background-color: #d32f2f; padding: 5px 10px; display: inline-block; border-radius: 5px; margin-top: 10px;}"
           +
-          ".warning {font-size: 16px; font-weight: bold; color: #e65100; background-color: #fff3e0; padding: 10px; border-radius: 5px; margin-top: 15px;}"
+          ".warning {font-size: 16px; font-weight: bold; color: #ffffff; background-color: #ff9800; padding: 10px; border-radius: 5px; margin-top: 15px;}"
           +
           ".footer {margin-top: 20px; font-size: 14px; color: #777777; text-align: center; border-top: 1px solid #dddddd; padding-top: 15px;}"
           +
@@ -295,8 +336,8 @@ public class AuthServiceImpl implements AuthService {
           "<p>Mật khẩu của bạn đã được đặt lại thành công. Mật khẩu mới của bạn là:</p>" +
           "<p class='password'>" + newPassword + "</p>" +
           "<p>Hãy sao chép mật khẩu này và giữ bí mật.</p>" +
-          "<a href='http://localhost:3000/' class='button'>Đăng Nhập Ngay</a>" +
           "<p class='warning'>Vui lòng thay đổi mật khẩu ngay sau khi đăng nhập thành công!</p>" +
+          "<a href='http://localhost:3000/login' class='button'>Đăng Nhập Ngay</a>" +
           "</div>" +
           "<div class='footer'>" +
           "<p>Nếu bạn không yêu cầu thay đổi mật khẩu này, vui lòng liên hệ bộ phận hỗ trợ của chúng tôi.</p>"
