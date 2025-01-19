@@ -194,6 +194,7 @@ public class AuthServiceImpl implements AuthService {
       );
       SecurityContextHolder.getContext().setAuthentication(authentication);
       CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+//      Sau khi xác thực thành công: CustomUserDetails từ bước xác thực được sử dụng để tạo JWT thông qua JwtTokenProvider.
       User user = userDetails.getUser();
       return jwtTokenProvider.generateToken(userDetails, user.getRole().getName());
     } catch (Exception e) {

@@ -89,6 +89,7 @@ public class CommentServiceImpl implements CommentService {
     commentRepository.delete(comment);
   }
 
+  //lấy các bình luận của 1 tài liệu
   @Override
   public List<CommentDto> getComments(Long documentId) {
     return commentRepository.findByDocumentId(documentId)

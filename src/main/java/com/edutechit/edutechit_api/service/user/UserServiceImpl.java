@@ -114,6 +114,7 @@ public class UserServiceImpl implements UserService {
     followRepository.save(follow);
   }
 
+  //lấy top danh sách người dùng tạo tài liệu
   @Override
   public List<UserDocumentStatsDTO> getUsersOrderByDocumentCountDesc() {
     return userRepository.findUsersOrderByDocumentCountDesc();

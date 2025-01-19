@@ -36,7 +36,7 @@ public class CommentController {
         return ResponseEntity.noContent().build();
     }
 
-    // Lấy danh sách bình luận
+    // Lấy danh sách bình luận của 1 tài liệu
     @GetMapping("/{documentId}")
     public ResponseEntity<List<CommentDto>> getComments(@PathVariable Long documentId) {
         return ResponseEntity.ok(commentService.getComments(documentId));

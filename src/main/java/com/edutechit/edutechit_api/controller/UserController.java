@@ -78,6 +78,7 @@ public class UserController {
     }
   }
 
+  //đăng ký nhận email khi có bài viết mới được duyệt
   @PostMapping("/register-tracking")
   public ResponseEntity<String> registerTracking(@RequestParam String email,
       @RequestHeader("Authorization") String token) {
@@ -89,6 +90,7 @@ public class UserController {
     }
   }
 
+  //lấy top danh sách người dùng tạo tài liệu
   @GetMapping("/by-document-count")
   public ResponseEntity<List<UserDocumentStatsDTO>> getUsersByDocumentCount() {
     List<UserDocumentStatsDTO> users = userService.getUsersOrderByDocumentCountDesc();

@@ -304,6 +304,7 @@ public class DocumentServiceImpl implements DocumentService {
     return documentResponseDto;
   }
 
+  //lấy tất cả tài liệu dựa trên category
   @Override
   public List<DocumentResponseDto> getDocumentsByCategoryName(String categoryName) {
     List<Document> documents = documentRepository.findAllDocumentsByCategoryName(categoryName);
