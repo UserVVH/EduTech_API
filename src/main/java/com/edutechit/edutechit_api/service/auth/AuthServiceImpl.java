@@ -244,8 +244,8 @@ public class AuthServiceImpl implements AuthService {
 
   // Gửi email khôi phục mật khẩu
   private void sendResetPasswordEmail(String toEmail, String newPassword) {
-    final String fromEmail = "notification.eduvnua@gmail.com";
-    final String password = "thzr pqrw izim cpap";
+    final String fromEmail = ""; //Your email app
+    final String password = ""; //Your password app
 
     Properties properties = new Properties();
     properties.put("mail.smtp.host", "smtp.gmail.com");

@@ -17,8 +17,8 @@ public class EmailService {
   private final FollowRepository followRepository;
   private String host = "smtp.gmail.com"; // SMTP server
   private String port = "587"; // SMTP port (587 for TLS)
-  private String username = "notification.eduvnua@gmail.com"; // Your email
-  private String password = "thzr pqrw izim cpap"; // Your email password
+  private String username = ""; // Your email
+  private String password = ""; // Your email password
 
   public EmailService(FollowRepository followRepository) {
     this.followRepository = followRepository;
