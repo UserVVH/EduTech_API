@@ -12,79 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class DropboxUtils {
 
-  //    @Value("${dropbox.access.token}")
-//    private String accessToken;
-
-//  @Value("${dropbox.access.token}")
-//  private String tokenUrl;
-
-//  @Value("${aes.secret}")
-//  private String secretKeyAES;
-
-//  private String dropboxAccessToken;
-
-//  @PostConstruct
-//  public void init() {
-//    try {
-//      // Lấy nội dung từ tokenUrl
-//      RestTemplate restTemplate = new RestTemplate();
-//      String encryptedData = restTemplate.getForObject(tokenUrl, String.class);
-//
-//      // Kiểm tra nếu nội dung trả về không null
-//      if (encryptedData != null) {
-//        encryptedData = encryptedData.trim(); // Loại bỏ khoảng trắng đầu/cuối
-//        System.out.println("Encrypted Data Retrieved: " + encryptedData);
-//
-//        // Giải mã dữ liệu AES
-//        dropboxAccessToken = decryptAES(encryptedData, secretKeyAES); // Sử dụng secret key đã có
-//        System.out.println("Dropbox Access Token: " + dropboxAccessToken);
-//      } else {
-//        System.err.println("Error: No token retrieved from URL.");
-//      }
-//    } catch (Exception e) {
-//      System.err.println("Error during initialization: " + e.getMessage());
-//    }
-//  }
-
-  // Phương thức giải mã AES với khóa secretKey đã có
-//  private String decryptAES(String encryptedData, String secretKey) throws Exception {
-//    // Chuyển đổi Base64 về dạng byte
-//    byte[] encryptedBytes = Base64.getDecoder().decode(encryptedData);
-//
-//    // Kiểm tra chiều dài dữ liệu
-//    if (encryptedBytes.length < 16) {
-//      throw new IllegalArgumentException("Encrypted data is too short.");
-//    }
-//
-//    // Tách IV (16 byte đầu tiên)
-//    byte[] iv = new byte[16];
-//    System.arraycopy(encryptedBytes, 0, iv, 0, iv.length);
-//
-//    // Dữ liệu mã hóa (sau IV)
-//    byte[] encryptedDataWithoutIV = new byte[encryptedBytes.length - iv.length];
-//    System.arraycopy(encryptedBytes, iv.length, encryptedDataWithoutIV, 0, encryptedDataWithoutIV.length);
-//
-//    // Tạo khóa AES từ secretKey (sử dụng SHA-256 để tạo khóa 32 byte nếu cần)
-//    SecretKeySpec keySpec = new SecretKeySpec(hashSecretKey(secretKey), "AES");
-//
-//    // Tạo đối tượng Cipher để giải mã
-//    Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
-//    IvParameterSpec ivSpec = new IvParameterSpec(iv); // IV phải dùng đúng như khi mã hóa
-//    cipher.init(Cipher.DECRYPT_MODE, keySpec, ivSpec);
-//
-//    // Giải mã dữ liệu
-//    byte[] decryptedBytes = cipher.doFinal(encryptedDataWithoutIV);
-//
-//    // Chuyển dữ liệu giải mã thành chuỗi
-//    return new String(decryptedBytes, StandardCharsets.UTF_8);
-//  }
-//
-//  // Phương thức băm secretKey để tạo khóa 32 byte (SHA-256)
-//  private byte[] hashSecretKey(String secretKey) throws Exception {
-//    MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
-//    return sha256.digest(secretKey.getBytes(StandardCharsets.UTF_8));
-//  }
-
 
   @Value("${dropbox.access.token}")
   private String accessToken;
@@ -95,10 +22,6 @@ public class DropboxUtils {
     return new DbxClientV2(config, accessToken.trim());
   }
 
-//  private DbxClientV2 getClient() {
-//    DbxRequestConfig config = DbxRequestConfig.newBuilder("dropbox/edutechit_api/files").build();
-//    return new DbxClientV2(config, accessToken.trim());
-//  }
 
   public String uploadFile(InputStream in, String fileName) throws Exception {
     DbxClientV2 client = getClient();
